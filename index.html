@@ -1,0 +1,294 @@
+/*
+Unity Game Developer Portfolio - Single-file React component
+- Uses TailwindCSS for styling (assumes Tailwind is set up in your project)
+- Uses Framer Motion for animations (install: framer-motion)
+- Uses react-icons for icons (install: react-icons)
+
+How to use:
+1. Create a React app (Vite or CRA).
+2. Install dependencies:
+   npm install framer-motion react-icons
+3. Make sure Tailwind is configured.
+4. Drop this file into src/components/Portfolio.jsx and import it in App.jsx.
+
+Customize:
+- Replace `projects` array with your real projects, links, images and video/GIFs.
+- Replace profile details, social links, resume link.
+- You can swap particle background or add WebGL/Three.js canvas for richer visuals.
+*/
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaUnity } from 'react-icons/fa';
+import { GiGamepad } from 'react-icons/gi';
+
+const projects = [
+  {
+    id: 1,
+    title: 'Neon Drift — Racing Prototype',
+    role: 'Lead Gameplay Programmer / Designer',
+    tech: ['Unity C#', 'URP', 'Cinemachine'],
+    desc: 'High-speed arcade racing prototype with drift physics, adaptive AI and runtime track generator.',
+    img: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1200&q=60',
+    link: '#'
+  },
+  {
+    id: 2,
+    title: 'Voidfall — 2D Roguelite',
+    role: 'Systems Programmer / Tools',
+    tech: ['Unity', 'ScriptableObjects', 'Addressables'],
+    desc: 'Procedural levels, balanced combat loop, and editor tools to speed content creation.',
+    img: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1200&q=60',
+    link: '#'
+  },
+  {
+    id: 3,
+    title: 'Echoes VR — Experimental',
+    role: 'VR Dev / UX Designer',
+    tech: ['Unity XR', 'Oculus', 'Shader Graph'],
+    desc: 'Spatial audio driven puzzle mechanics with comfort-first locomotion options.',
+    img: 'https://images.unsplash.com/photo-1508898578281-774ac4893a2b?auto=format&fit=crop&w=1200&q=60',
+    link: '#'
+  }
+];
+
+export default function Portfolio() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white antialiased">
+      {/* Decorative animated stars / particles */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-30">
+        <svg className="w-full h-full" preserveAspectRatio="none">
+          <defs>
+            <radialGradient id="g" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#fff" stopOpacity="0.08" />
+              <stop offset="100%" stopColor="#000" stopOpacity="0" />
+            </radialGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#g)" />
+        </svg>
+      </div>
+
+      <header className="max-w-6xl mx-auto px-6 py-8 flex items-center justify-between z-10 relative">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-lg bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center shadow-2xl">
+            <FaUnity className="w-8 h-8 text-white" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-extrabold tracking-tight">Jamukiya Mehul — Unity Game Dev</h1>
+            <p className="text-sm text-gray-300">6 years building gameplay systems, tools & prototypes</p>
+          </div>
+        </div>
+
+        <nav className="flex items-center gap-4">
+          <a href="#projects" className="text-sm py-2 px-4 rounded-lg bg-white/5 hover:bg-white/10 transition">Projects</a>
+          <a href="#about" className="text-sm py-2 px-4 rounded-lg bg-white/5 hover:bg-white/10 transition">About</a>
+          <a href="#contact" className="text-sm py-2 px-4 rounded-lg bg-indigo-600 hover:bg-indigo-500 transition flex items-center gap-2"><FaDownload /> Resume</a>
+        </nav>
+      </header>
+
+      <main className="max-w-6xl mx-auto px-6 py-12 relative z-10">
+        {/* Hero */}
+        <section className="grid md:grid-cols-2 gap-8 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="space-y-6"
+          >
+            <div className="inline-flex items-center gap-3 bg-white/5 px-3 py-1 rounded-full text-sm">
+              <GiGamepad className="w-5 h-5" /> <span>Unity | Gameplay | Tools | VR</span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">I make games that feel good to play — from prototype to polish.</h2>
+            <p className="text-gray-300 max-w-xl">Six years building player-first systems, performance-minded code, and editor tools that help teams ship faster. I love making tight controls, expressive feedback, and scalable architecture.</p>
+
+            <div className="flex items-center gap-4">
+              <a href="#projects" className="px-6 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 transition font-semibold">View Work</a>
+              <a href="#contact" className="px-4 py-3 rounded-lg bg-white/5 hover:bg-white/10 transition">Contact Me</a>
+            </div>
+
+            <div className="flex items-center gap-4 text-gray-300">
+              <a aria-label="Github" href="#"><FaGithub className="w-6 h-6 hover:scale-110 transition" /></a>
+              <a aria-label="LinkedIn" href="#"><FaLinkedin className="w-6 h-6 hover:scale-110 transition" /></a>
+              <a aria-label="Email" href="#contact"><FaEnvelope className="w-6 h-6 hover:scale-110 transition" /></a>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="bg-gradient-to-br from-white/3 to-white/5 rounded-2xl p-6 shadow-2xl"
+          >
+            <div className="relative w-full h-80 rounded-lg overflow-hidden">
+              {/* simulated game demo card */}
+              <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1400&q=60" alt="game demo" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                <div>
+                  <h3 className="text-xl font-bold">Neon Drift — playable demo</h3>
+                  <p className="text-sm text-gray-300">Drift physics, boost system, and dynamic camera.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-3 gap-3 text-sm">
+              <div className="bg-white/5 rounded-lg p-3 text-center">Playtime: Prototype</div>
+              <div className="bg-white/5 rounded-lg p-3 text-center">Team: 3</div>
+              <div className="bg-white/5 rounded-lg p-3 text-center">Platform: PC</div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Projects */}
+        <section id="projects" className="mt-16">
+          <h3 className="text-2xl font-bold mb-6">Selected Projects</h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {projects.map(p => (
+              <motion.a
+                key={p.id}
+                whileHover={{ scale: 1.03 }}
+                className="group bg-white/3 rounded-xl overflow-hidden shadow-lg block"
+                href={p.link}
+              >
+                <div className="relative h-48">
+                  <img src={p.img} alt={p.title} className="w-full h-full object-cover transform group-hover:scale-105 transition duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4">
+                    <div>
+                      <h4 className="font-bold text-lg">{p.title}</h4>
+                      <p className="text-xs text-gray-300">{p.role}</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4 space-y-2">
+                  <p className="text-sm text-gray-300">{p.desc}</p>
+                  <div className="flex gap-2 flex-wrap mt-2">
+                    {p.tech.map(t => (
+                      <span key={t} className="text-xs bg-white/5 px-2 py-1 rounded-md">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </motion.a>
+            ))}
+          </div>
+        </section>
+
+        {/* About & Skills */}
+        <section id="about" className="mt-16 grid md:grid-cols-2 gap-8 items-start">
+          <div>
+            <h3 className="text-2xl font-bold">About Me</h3>
+            <p className="mt-4 text-gray-300">I’m a Unity developer with 6 years of experience crafting gameplay, building editor tools, and optimizing systems for performance. I enjoy collaborating closely with designers and artists to turn ideas into player-facing mechanics that are fun and robust.</p>
+
+            <ul className="mt-6 space-y-3">
+              <li><strong>Experience:</strong> 6 years across indie and studio projects</li>
+              <li><strong>Strong in:</strong> Gameplay systems, C# architecture, editor tooling, shader basics</li>
+              <li><strong>Platforms:</strong> PC, Mobile, VR</li>
+            </ul>
+
+            <div className="mt-6 flex gap-3">
+              <a className="px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-500 transition font-semibold" href="#contact">Hire Me</a>
+              <a className="px-4 py-2 rounded-md bg-white/5 hover:bg-white/10 transition" href="#">Download Portfolio PDF</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-bold">Skills & Tools</h4>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {['Unity C#','Gameplay Systems','Editor Tools','Shader Graph','DOTS & ECS','Addressables','URP/HDRP','VR/XR','Optimization','Git'].map(skill => (
+                <div key={skill} className="bg-white/3 rounded-lg p-3 flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white/5 rounded-md flex items-center justify-center">
+                    <GiGamepad />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm">{skill}</div>
+                    <div className="text-xs text-gray-300">{Math.floor(Math.random()*30)+70}%</div>
+                    <div className="w-full bg-white/5 h-2 rounded mt-2 overflow-hidden">
+                      <div style={{width: `${Math.floor(Math.random()*30)+70}%`}} className="h-full bg-white/40" />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Experience timeline */}
+        <section className="mt-16">
+          <h3 className="text-2xl font-bold mb-6">Experience</h3>
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-600 to-pink-500 flex items-center justify-center font-bold">2025</div>
+              <div>
+                <h4 className="font-semibold">Senior Unity Developer — PixelForge Studios</h4>
+                <p className="text-sm text-gray-300">Led core gameplay systems and performance optimisation on a 6-person team. Built modular tools for level designers.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-blue-400 flex items-center justify-center font-bold">2022</div>
+              <div>
+                <h4 className="font-semibold">Gameplay Programmer — Indie Collective</h4>
+                <p className="text-sm text-gray-300">Prototyped several mechanics, implemented save systems, and improved load times by 40% through streaming and Addressables.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-teal-400 flex items-center justify-center font-bold">2019</div>
+              <div>
+                <h4 className="font-semibold">Junior Unity Developer — StartUp Games</h4>
+                <p className="text-sm text-gray-300">Joined as a junior, shipped two titles; focused on input systems and polish loops.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="mt-16 bg-white/3 p-6 rounded-2xl">
+          <h3 className="text-2xl font-bold mb-4">Get in touch</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <p className="text-gray-300">Available for full-time and contract roles. I respond quickly to clear briefs and playable prototypes.</p>
+
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center"><FaEnvelope /></div>
+                <div>
+                  <div className="text-sm font-semibold">Email</div>
+                  <div className="text-xs text-gray-300">youremail@example.com</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center"><FaGithub /></div>
+                <div>
+                  <div className="text-sm font-semibold">Github</div>
+                  <div className="text-xs text-gray-300">github.com/yourhandle</div>
+                </div>
+              </div>
+
+            </div>
+
+            <form className="space-y-4 p-4 bg-black/20 rounded-lg">
+              <input className="w-full p-3 rounded-md bg-white/5" placeholder="Your name" />
+              <input className="w-full p-3 rounded-md bg-white/5" placeholder="Email" />
+              <textarea className="w-full p-3 rounded-md bg-white/5" rows="4" placeholder="Tell me about your project"></textarea>
+              <div className="flex items-center justify-between">
+                <button className="px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-500 transition">Send message</button>
+                <div className="text-xs text-gray-400">Or email me directly</div>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <footer className="mt-12 text-center text-gray-400">© {new Date().getFullYear()} Jamukiya Mehul — Unity Game Developer</footer>
+      </main>
+
+      {/* Floating action for quick demo */}
+      <motion.a
+        whileHover={{ scale: 1.05 }}
+        className="fixed right-6 bottom-6 z-20 bg-indigo-600 p-3 rounded-full shadow-2xl flex items-center gap-2"
+        href="#projects"
+      >
+        <span className="font-semibold">Play Demos</span>
+      </motion.a>
+    </div>
+  );
+}
